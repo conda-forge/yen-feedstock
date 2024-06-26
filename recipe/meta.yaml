@@ -1,5 +1,5 @@
 {% set name = "yen" %}
-{% set version = "0.5.0" %}
+{% set version = "0.5.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/yen-{{ version }}.tar.gz
-  sha256: 2003d3db4b00008e5e81dd9e563b5dc08940fc86430c3ef9e40aedf8c25cc238
+  sha256: 40a31caa2ccbf1c62879d60ca8ce15f278c726363977e5aedb22b0eb90151687
 
 build:
   entry_points:
