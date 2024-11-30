@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/yen-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/yen-{{ version }}.tar.gz
   sha256: 3bbc486f66e71f9cfbafac55c8810eb09989951e357f4db69c34f49642ad1c97
 
 build:
@@ -14,14 +14,14 @@ build:
     - yen=yen.cli:cli
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - microvenv >=2023.2.0
     - rich >=13.5.3
 
@@ -33,6 +33,7 @@ test:
     - yen --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/tusharsadhwani/yen
