@@ -1,5 +1,5 @@
 {% set name = "yen" %}
-{% set version = "0.6.0" %}
+{% set version = "0.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/yen-{{ version }}.tar.gz
-  sha256: 3bbc486f66e71f9cfbafac55c8810eb09989951e357f4db69c34f49642ad1c97
+  sha256: 9ecff428998b6ba7ca2ae4d8ef3350ac8d2031b60a66c38d7863bbad4ba9ef37
 
 build:
   entry_points:
     - yen=yen.cli:cli
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
