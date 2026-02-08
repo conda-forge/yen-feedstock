@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: yen
+  version: 0.6.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/yen-${{ version }}.tar.gz
+  sha256: 9ecff428998b6ba7ca2ae4d8ef3350ac8d2031b60a66c38d7863bbad4ba9ef37
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - yen=yen.cli:cli
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - microvenv >=2023.2.0
+    - rich >=13.5.3
+
+tests:
+  - python:
+      imports:
+        - yen
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - yen --help
+
+about:
+  summary: Yet another Python environment manager.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/tusharsadhwani/yen
+
+extra:
+  recipe-maintainers:
+    - pavelzw
